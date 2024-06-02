@@ -1,0 +1,212 @@
+.header {
+    padding-top: 30px;
+    /* .header__nav */
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+    }
+    /* .header__logo */
+    &__logo {
+        color: #fff;
+
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 18px;
+
+        position: relative;
+        z-index: 6;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+
+        span {
+            font-weight: 600;
+        }
+    }
+    /* .header__burger */
+    &__burger {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background: none;
+        position: relative;
+        z-index: 6;
+        padding: 12px;
+
+        span {
+            width: 30px;
+            height: 2px;
+            background-color: #fff;
+            transition: all .4s;
+        }
+
+        &.active {
+            :nth-child(1) {
+                rotate: 45deg;
+                translate: 0px 4px;
+            }
+            :nth-child(2) {
+                rotate: -45deg;
+                translate: 0px -4px;
+            }
+
+            &:hover {
+                animation: rotate 0.4s ease-in-out;
+            }
+        }
+    }
+    // header__logo-text
+    &__text-logo {
+        position: relative;
+        top: 2px;
+    }
+    /* .header__menu */
+    &__menu {
+
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100dvh;
+        background-color: rgb(19, 19, 19,1);
+        z-index: 5;
+
+        display: grid;
+        place-items: center;
+        align-content: center;
+        gap: 40px;
+
+        transition: all 0.7s cubic-bezier(0.8, 0.5, 0.5, 0.8);;
+
+        &.active {
+            right: 0;
+        }
+
+        @media (max-width: 480px) {
+            gap: 20px;
+        }
+    }
+    /* .header__inner */
+    &__inner {
+
+        display: flex;
+        gap: 50px;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        @media (max-width: 480px) {
+            gap: 20px;
+        }
+
+        a {
+            color: #fff;
+            font-size: 60px;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.8s;
+            letter-spacing: 6px;
+
+            &:hover {
+
+                &:after {
+                    width: 100%;
+                }
+            }
+
+            &:after {
+                content: '';
+                height: 2px;
+                width: 0%;
+                background-color: #fff;
+                transition: all 0.8s;
+
+            }
+
+            @media (max-width: 992px) {
+                font-size: 40px;
+            }
+            @media (max-width: 768px) {
+                font-size: 30px;
+            }
+            @media (max-width: 480px) {
+                font-size: 21px;
+            }
+        }
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 30px ;
+
+        margin-top: auto;
+
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        margin: 0 auto;
+        border-top: 1px solid #d3d3d3af;
+
+        @media (max-width: 768px) {
+            flex-wrap: wrap;
+        }
+    }
+
+    &__box {
+        display: flex;
+        align-items: center ;
+        gap: 15px;
+        p {
+            font-size: 8px;
+            color: #fafafac8;
+
+        }
+    }
+
+    &__menu-btns {
+        display: none;
+        position: absolute;
+        top: 90px;
+        width: 100%;
+        padding: 20px 15px;
+
+        border-top: 1px solid grey;
+        border-bottom: 1px solid grey;
+        background-color: rgb(19, 19, 19,1);
+
+        .btns {
+            justify-content: space-between;
+        }
+
+        @media (max-width: 768px) {
+            display: block;
+        }
+    }
+    &__nav-btns {
+        margin-left: auto;
+
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
+}
+
+
+@keyframes rotate {
+    100% {
+        rotate: 90deg;
+    }
+}
