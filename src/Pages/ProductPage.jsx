@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from 'react'
+import Product from '../Layout/Product/Product'
+import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router-dom'
+
 import dataFilms from '../db/data'
 
 const ProductPage = () => {
 
-    const { id } = useParams();
+  const { id } = useParams();
 
-    const [dataMain, setDataMain] = useState([])
+  const [filmTitle, setFilmTitle] = useState('');
+  const [filmDesc, setFilmDesc] = useState('');
 
-    useEffect(() => {
-       const film = dataFilms.find(film => film.id === parseInt([id]))
+  useEffect(() => {
+    const film = dataFilms.find(film => film.id === parseInt(id));
+    if (film) {
+      setFilmTitle(film.title);
+      setFilmDesc(film.description);
+    }
+  }, [id]);
 
-       if (film) {
-        setDataMain([film])
-       }
-    }, [id])
-
-    console.log(dataMain);
 
   return (
     <>
-    {dataMain.map((card) => (
-        <div className="card" key={card.id}>
-            <h4>{card.id}</h4>
-            <h4>{card.title}</h4>
-            <h4>{card.rating}</h4>
-            <h4>{card.releaseDate}</h4>
-        </div>
-    ))}
+    <Helmet>
+      <title>FilmCinema-{filmTitle}</title>
+      <meta name='description' content={filmDesc} />
+    </Helmet>
+    <Product/>
     </>
   )
 }

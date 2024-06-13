@@ -4,6 +4,7 @@ import { useLocation, useRoutes } from 'react-router-dom'
 import routes from './routes'
 import Header from './Layout/Header/Header'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
+import { HelmetProvider } from 'react-helmet-async'
 
 const App = () => {
 
@@ -38,7 +39,9 @@ const App = () => {
           >
             <div className='main-body'>
               <Header />
-              {routing}
+              <HelmetProvider>
+                {routing}
+              </HelmetProvider>
             </div>
 
           </CSSTransition>

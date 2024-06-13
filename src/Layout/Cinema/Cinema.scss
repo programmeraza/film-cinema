@@ -3,25 +3,28 @@
 
     &__wrapper {
         width: 100%;
-        max-width: 1000px;
+        max-width: 1200px;
         margin: 0 auto;
 
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 60px;
 
-        margin-top: 40px;
-        padding-bottom: 200px;
         position: relative;
         overflow: hidden;
+        padding: 10% 50px 10%;
 
-        :first-child {
-            margin-top: 50px;
+        @media (max-width: 480px) {
+            padding: 100px 35px;
         }
 
-        :last-child {
-            margin-top: 50px;
-        }
+        // :first-child {
+        //     margin-top: 50px;
+        // }
+
+        // :last-child {
+        //     margin-top: 50px;
+        // }
     }
 
     // .cinema__card
@@ -33,10 +36,16 @@
         align-items: center;
         text-align: center;
 
+        animation: bounce 2s infinite alternate-reverse ease;
+
         img {
             width: 100%;
             height: 320px;
             object-fit: cover;
+
+            box-shadow: 1px 1px 30px 10px rgba(0, 0, 0, 0.4);
+
+            transition: all .4s;
         }
 
         p {
@@ -46,7 +55,7 @@
             translate: -50% 0;
             max-width: 390px;
             margin: 0 auto;
-            font-size: 30px;
+            font-size: 20px;
             width: 100%;
             opacity: 0;
             transition: all 0.5s;
@@ -57,13 +66,103 @@
             visibility: hidden;
         }
 
+        b {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 45px;
+            height: 45px;
+            background-color: green;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            opacity: 0;
+            border-radius: 50%;
+            z-index: 2;
+            transition: .3s;
+        }
+
         &:hover {
             p {
-                bottom: 50px;
+                bottom: -80px;
                 opacity: 1;
                 visibility: visible;
+            }
+            b {
+                opacity: 1;
             }
         }
     }
 }
 
+
+.cinema__wrapper {
+
+    >:nth-child(1) {
+        .cinema__card {
+            perspective: 700px;
+            img {
+                transform: rotateY(25deg);
+            }
+        }
+    }
+    >:nth-child(2) {
+        .cinema__card {
+            perspective: 700px;
+
+            scale: .85;
+            img {
+                transform: rotateY(10deg);
+            }
+        }
+    }
+    >:nth-child(3) {
+        .cinema__card {
+            perspective: 700px;
+
+            scale: .85;
+            img {
+                transform: rotateY(-10deg);
+            }
+        }
+    }
+    >:nth-child(4) {
+        .cinema__card {
+            perspective: 700px;
+            img {
+                transform: rotateY(-25deg);
+            }
+        }
+    }
+}
+
+.cinema__card {
+    transition: all .4s;
+    @media (hover: hover) {
+        &:hover {
+            img {
+                transform: rotateY(0deg) scale(1.1) !important;
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        perspective: none !important;
+        scale: 1 !important;
+        animation: none;
+        img {
+            transform: none !important;
+            height: 400px !important;
+        }
+        p {
+            position: static;
+            opacity: 1;
+            visibility: visible;
+            translate: none;
+            padding-top: 15px;
+            font-size: 24px;
+        }
+    }
+}
